@@ -7,11 +7,16 @@ import Button from 'primevue/button';
 
 
 
-import MapPage from "./components/MapPage.vue";
+import MapPage from "./views/MapPage.vue";
+
 
 import "primevue/resources/themes/lara-light-indigo/theme.css";
 import "primevue/resources/primevue.min.css";
 
+
+import "primeflex/primeflex.css";
+
+import Dropdown from 'primevue/dropdown';
 
 const routes = [
     { path: "/", component: MapPage },
@@ -28,5 +33,6 @@ app.use(PrimeVue);
 app.use(router);
 
 app.component('Button', Button);
+app.component('Dropdown', Dropdown);
 
 app.mount("#app");

@@ -1,5 +1,10 @@
 # country-routing-demo-vue
 
+## TODOs
+
+- maybe remove primeflex, not sure if necessary
+
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Customize configuration
