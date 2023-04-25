@@ -18,6 +18,9 @@ import "primeflex/primeflex.css";
 
 import Dropdown from 'primevue/dropdown';
 
+import CountryFlag from 'vue-country-flag-next';
+
+
 const routes = [
     { path: "/", component: MapPage },
 ];
@@ -34,5 +37,6 @@ app.use(router);
 
 app.component('Button', Button);
 app.component('Dropdown', Dropdown);
+app.component('country-flag', CountryFlag)
 
 app.mount("#app");
