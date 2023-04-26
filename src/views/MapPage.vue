@@ -28,8 +28,8 @@ export default {
   },
 
   methods:{
-    getCatchedLmao(){
-      console.log('qwe');
+    getCatchedLmao(q1,q2){
+      console.log({q1,q2});
     }
   },
 }

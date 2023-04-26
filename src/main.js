@@ -16,9 +16,12 @@ import "primevue/resources/primevue.min.css";
 
 import "primeflex/primeflex.css";
 
+
 import Dropdown from 'primevue/dropdown';
 
 import CountryFlag from 'vue-country-flag-next';
+
+import "./assets/custom.css";
 
 
 const routes = [
