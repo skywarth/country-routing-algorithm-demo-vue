@@ -1,5 +1,5 @@
 <template>
-  <Dropdown v-model="selectedCountry" :options="countries" filter optionLabel="name" placeholder="Select a Country"
+  <Dropdown v-model="selectedCountry" ref="" :options="countries" filter optionLabel="name" placeholder="Select a Country"
             class="">
     <template #value="slotProps">
       <div v-if="slotProps.value" class="flex align-items-center">
@@ -25,6 +25,7 @@
 export default {
   name: "CountryDropdown",
   props: {
+    selectedCountryCode:String,
     test: String,
     countries: {
       type: Array
@@ -39,10 +40,21 @@ export default {
     };
   },
 
+  watch: {
+    selectedCountry(newVal, oldVal) {
+      this.$emit('update:selectedCountryCode',newVal.cca3_code);
+    }
+  },
+
   setup(props){
-    console.log(props.test);
-    console.log(props.countries);
-  }
+    /*console.log(props.test);
+    console.log(props.countries);*/
+  },
+
+  emits: ["selectedCountryChanged",'update:selectedCountryCode'],
+
+
+
 }
 </script>
 

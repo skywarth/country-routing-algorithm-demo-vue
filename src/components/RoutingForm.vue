@@ -1,22 +1,24 @@
 <template>
   <div class="field">
     <label for="firstname1">Departure</label>
-    <CountryDropdown class="w-full" :countries="dropdownCountries"></CountryDropdown>
+    <CountryDropdown v-model:selectedCountryCode="fromCountryCode" class="w-full" :countries="dropdownCountries" ></CountryDropdown>
   </div>
 
   <div class="field">
     <label for="firstname1">Arrival</label>
-    <CountryDropdown class="w-full" :countries="dropdownCountries" test="qwe"></CountryDropdown>
+    <CountryDropdown v-model:selectedCountryCode="toCountryCode" class="w-full" :countries="dropdownCountries" test="qwe"></CountryDropdown>
   </div>
 
 
-  <Button @click="x" >Do ya thingx</Button>
+  <Button @click="submitForm" >Do ya thingx</Button>
 </template>
 
 <script>
 
 import CountryDropdown from "./CountryDropdown.vue";
-import {countriesDataset} from "country-routing-algorithm/data/full";
+import {countriesDataset} from "country-routing-algorithm";
+
+
 
 export default {
   name: "RoutingForm",
@@ -37,6 +39,8 @@ export default {
         { name: 'Spain', code: 'ES' },
         { name: 'United States', code: 'US' }
       ],
+      fromCountryCode: '',
+      toCountryCode:'',
 
     };
   },
@@ -52,11 +56,16 @@ export default {
 
     }
   },
-  emits: ["someEvent"], // <--- add this line
+  emits: ["formSubmitted"], // <--- add this line
   methods:{
-    x(){
-      this.$emit('someEvent',{data:'real sh*t??',cool:'right'},'whatsup');
-    }
+    submitForm(){
+      //this.$emit('someEvent',{data:'real sh*t??',cool:'right'},'whatsup');
+      this.$emit('formSubmitted',{
+        fromCountryCode:this.fromCountryCode,
+        toCountryCode:this.toCountryCode,
+      });
+    },
+
   },
 }
 </script>
