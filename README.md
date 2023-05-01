@@ -2,12 +2,15 @@
 
 ## TODOs
 
-- maybe remove primeflex, not sure if necessary
+- [ ] Display each country node with attributes as popup
+- [ ] zoom out after finding the route
+- [ ] error modal/swal
+- [ ] maybe remove primeflex, not sure if necessary
+
+## Customize configuration
 
 
 This template should help get you started developing with Vue 3 in Vite.
-
-## Customize configuration
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 

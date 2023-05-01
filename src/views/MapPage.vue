@@ -5,10 +5,10 @@
 <!--        <div class="text-3xl font-medium text-900 mb-2">Card Title</div>
         <div class="font-medium text-500 mb-3">Vivamus id nisl interdum, blandit augue sit amet, eleifend mi.</div>
         <div style="height: 150px" class="border-2 border-dashed surface-border">qwqwe</div>-->
-        <RoutingForm @form-submitted="getCatchedLmao"></RoutingForm>
+        <RoutingForm @form-submitted="routingFormSubmitted"></RoutingForm>
       </div>
       <div class="col-8">
-        <Map></Map>
+        <Map :poly-line-lat-lngs="mapPolylineLatLngs"></Map>
       </div>
     </div>
 
@@ -33,21 +33,21 @@ export default {
   data(){
     return {
       fromCountryCode:String,
-      toCountryCode:String
+      toCountryCode:String,
+      mapPolylineLatLngs:[],
     }
   },
 
   methods:{
-    getCatchedLmao({fromCountryCode,toCountryCode}){
+    routingFormSubmitted({fromCountryCode,toCountryCode}){
       this.fromCountryCode=fromCountryCode;
       this.toCountryCode=toCountryCode;
-
-      console.log(fromCountryCode,toCountryCode);
       this.findRoute();
     },
 
 
     findRoute(){
+
       let graphController=new CountryRoutingAlgorithm.GraphController(countriesDataset,new Graph());
       graphController.insertCountriesToGraph();
       const router=new CountryRoutingAlgorithm.Router(
@@ -56,7 +56,10 @@ export default {
           this.toCountryCode
       );
       let result=router.findRoute();
-      console.log(result);
+      let foundPath=result.getFoundPath()
+      this.mapPolylineLatLngs=foundPath.map(x=>x.attributes.latlng);
+
+
 
     }
   },
