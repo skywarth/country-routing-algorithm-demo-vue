@@ -7,6 +7,7 @@
           layer-type="base"
           name="OpenStreetMap"
       ></l-tile-layer>
+      <l-control-scale position="topright" :imperial="false" :metric="true"></l-control-scale>
       <l-polyline
           :lat-lngs="this.polyLineLatLngs"
           color="green"
@@ -15,7 +16,7 @@
   </div>
 </template>
 <script lang="ts">
-import { LMap, LPolyline, LTileLayer} from "@vue-leaflet/vue-leaflet";
+import { LMap, LPolyline, LTileLayer,LControlScale} from "@vue-leaflet/vue-leaflet";
 
 
 export default {
@@ -26,6 +27,7 @@ export default {
     LMap,
     LTileLayer,
     LPolyline,
+    LControlScale
   },
   data() {
     return {
@@ -33,11 +35,20 @@ export default {
     };
   },
   methods:{
+    setViewToContainAll(){
+      this.$refs.map.leafletObject.fitBounds(this.polyLineLatLngs);
+      //this.zoom-=0.5;
+    }
 
   },
-  async beforeMount() {
-    // HERE is where to load Leaflet components!
+  watch: {
 
+    polyLineLatLngs(newQuestion, oldQuestion) {
+      this.setViewToContainAll();
+
+    }
+  },
+  setup() {
 
   },
 };
