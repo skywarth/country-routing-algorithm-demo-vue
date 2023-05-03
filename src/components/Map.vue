@@ -9,42 +9,58 @@
       ></l-tile-layer>
       <l-control-scale position="topright" :imperial="false" :metric="true"></l-control-scale>
       <l-polyline
-          :lat-lngs="this.polyLineLatLngs"
+          :lat-lngs="this.foundPathLatLngs"
           color="green"
       />
+      <l-marker v-for="country in this.foundPath" :lat-lng="country.attributes.latlng" :key="country.id">
+        <!-- Didn't use the foundPathLatLngs because we'll need the attributes for the popup -->
+        <l-popup>Wazzaaaap</l-popup>
+      </l-marker>
     </l-map>
   </div>
 </template>
 <script lang="ts">
-import { LMap, LPolyline, LTileLayer,LControlScale} from "@vue-leaflet/vue-leaflet";
+import { LMap, LPolyline, LTileLayer,LControlScale, LMarker, LPopup} from "@vue-leaflet/vue-leaflet";
 
 
 export default {
   props: {
-    polyLineLatLngs: Array
+    foundPath:Array
   },
   components: {
     LMap,
     LTileLayer,
     LPolyline,
-    LControlScale
+    LControlScale,
+    LMarker,
+    LPopup
   },
   data() {
     return {
-      zoom: 3,
+      zoom: 4,
     };
+  },
+  computed:{
+    foundPathLatLngs(){
+        return this.foundPath.map(x=>x.attributes.latlng);
+    }
+
   },
   methods:{
     setViewToContainAll(){
-      this.$refs.map.leafletObject.fitBounds(this.polyLineLatLngs);
+      this.$refs.map.leafletObject.fitBounds(this.foundPathLatLngs);
       //this.zoom-=0.5;
     }
+
+
 
   },
   watch: {
 
-    polyLineLatLngs(newQuestion, oldQuestion) {
+    foundPath(newVal, oldVal) {
       this.setViewToContainAll();
+      console.log(newVal);
+      //debugger
 
     }
   },

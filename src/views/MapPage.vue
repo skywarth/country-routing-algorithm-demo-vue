@@ -8,7 +8,7 @@
         <RoutingForm @form-submitted="routingFormSubmitted"></RoutingForm>
       </div>
       <div class="col-8">
-        <Map :poly-line-lat-lngs="mapPolylineLatLngs"></Map>
+        <Map :found-path="mapFoundPath"></Map>
       </div>
     </div>
 
@@ -25,7 +25,7 @@ import CountryRoutingAlgorithm,{countriesDataset} from "country-routing-algorith
 
 
 export default {
-  name: "test",
+  name: "MapPage",
   components: {
     RoutingForm,
     Map
@@ -34,7 +34,7 @@ export default {
     return {
       fromCountryCode:String,
       toCountryCode:String,
-      mapPolylineLatLngs:[],
+      mapFoundPath:[],
     }
   },
 
@@ -56,8 +56,7 @@ export default {
           this.toCountryCode
       );
       let result=router.findRoute();
-      let foundPath=result.getFoundPath()
-      this.mapPolylineLatLngs=foundPath.map(x=>x.attributes.latlng);
+      this.mapFoundPath=result.getFoundPath()
 
 
 
