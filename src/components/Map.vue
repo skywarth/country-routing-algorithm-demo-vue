@@ -12,15 +12,14 @@
           :lat-lngs="this.foundPathLatLngs"
           color="green"
       />
-      <l-marker v-for="country in this.foundPath" :lat-lng="country.attributes.latlng" :key="country.id">
-        <!-- Didn't use the foundPathLatLngs because we'll need the attributes for the popup -->
-        <l-popup>Wazzaaaap</l-popup>
-      </l-marker>
+      <map-country-marker v-for="country in this.foundPath" :country="country"></map-country-marker>
+
     </l-map>
   </div>
 </template>
 <script lang="ts">
 import { LMap, LPolyline, LTileLayer,LControlScale, LMarker, LPopup} from "@vue-leaflet/vue-leaflet";
+import MapCountryMarker from "./MapCountryMarker.vue";
 
 
 export default {
@@ -28,6 +27,7 @@ export default {
     foundPath:Array
   },
   components: {
+    MapCountryMarker,
     LMap,
     LTileLayer,
     LPolyline,
