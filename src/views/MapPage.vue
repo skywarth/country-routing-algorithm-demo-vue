@@ -54,6 +54,9 @@ export default {
       fromCountryCode:String,
       toCountryCode:String,
       mapFoundPath:[],
+      graphController:null,
+      router:null,
+      routingResult:null,
     }
   },
 
@@ -67,20 +70,23 @@ export default {
 
     findRoute(){
 
-      let graphController=new CountryRoutingAlgorithm.GraphController(countriesDataset,new Graph());
-      graphController.insertCountriesToGraph();
-      const router=new CountryRoutingAlgorithm.Router(
-          graphController.graphInstance,
-          this.fromCountryCode,
-          this.toCountryCode
-      );
-      let result=router.findRoute();
+      let result=this.router.findRoute();
       this.mapFoundPath=result.getFoundPath()
 
 
 
     }
   },
+  mounted(){
+    this.graphController=new CountryRoutingAlgorithm.GraphController(countriesDataset,new Graph());
+    this.graphController.insertCountriesToGraph();
+    this.router=new CountryRoutingAlgorithm.Router(
+        this.graphController.graphInstance,
+        this.fromCountryCode,
+        this.toCountryCode
+    );
+
+  }
 }
 </script>
 
