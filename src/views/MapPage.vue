@@ -20,8 +20,9 @@
               <span class="font-bold text-lg">Result</span>
             </div>
           </template>
-          <p class="m-0">
-          </p>
+          <RoutingResultForm></RoutingResultForm>
+
+
         </Fieldset>
       </div>
       <div class="col-8">
@@ -36,18 +37,24 @@
 <script>
 import Map from "../components/Map.vue";
 import RoutingForm from "@/components/RoutingForm.vue";
+import RoutingResultForm from "@/components/RoutingResultForm.vue";
 
 import Graph from 'graphology';
 import CountryRoutingAlgorithm,{countriesDataset} from "country-routing-algorithm"
 import Fieldset from "primevue/fieldset";
 
 
+const graphController=new CountryRoutingAlgorithm.GraphController(countriesDataset,new Graph());
+graphController.insertCountriesToGraph();
+
+
 export default {
   name: "MapPage",
   components: {
+    RoutingResultForm,
     RoutingForm,
     Map,
-    Fieldset
+    Fieldset,
   },
   data(){
     return {
@@ -70,23 +77,18 @@ export default {
 
     findRoute(){
 
-      let result=this.router.findRoute();
-      this.mapFoundPath=result.getFoundPath()
+      const router=new CountryRoutingAlgorithm.Router(
+          graphController.graphInstance,
+          this.fromCountryCode,
+          this.toCountryCode
+      );
+      let result=router.findRoute();
+      this.mapFoundPath=result.getFoundPath();
 
 
 
     }
   },
-  mounted(){
-    this.graphController=new CountryRoutingAlgorithm.GraphController(countriesDataset,new Graph());
-    this.graphController.insertCountriesToGraph();
-    this.router=new CountryRoutingAlgorithm.Router(
-        this.graphController.graphInstance,
-        this.fromCountryCode,
-        this.toCountryCode
-    );
-
-  }
 }
 </script>
 
