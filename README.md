@@ -3,6 +3,7 @@
 ## TODOs
 
 - [ ] Display each country node with attributes as popup
+- [ ] Display found path metrics
 - [X] zoom out after finding the route
 - [ ] error modal/swal
 - [ ] maybe remove primeflex, not sure if necessary

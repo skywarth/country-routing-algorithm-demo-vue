@@ -24,7 +24,11 @@ import MapCountryMarker from "./MapCountryMarker.vue";
 
 export default {
   props: {
-    foundPath:Array
+    foundPath: {
+      type:Array,
+      default:[],
+      required:true
+    }
   },
   components: {
     MapCountryMarker,

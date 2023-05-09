@@ -13,14 +13,14 @@
             <RoutingForm @form-submitted="routingFormSubmitted"></RoutingForm>
           </p>
         </Fieldset>
-        <Fieldset class="mt-4"><!--need v-if here-->
+        <Fieldset class="mt-4" v-if="routingFormResultVisible">
           <template #legend>
             <div class="flex align-items-center text-primary">
               <span class="pi pi-map mr-2"></span>
               <span class="font-bold text-lg">Result</span>
             </div>
           </template>
-          <RoutingResultForm></RoutingResultForm>
+          <RoutingResultForm :path-distance="pathDistance" :country-count="countryCount"></RoutingResultForm>
 
 
         </Fieldset>
@@ -62,8 +62,17 @@ export default {
       toCountryCode:String,
       mapFoundPath:[],
       graphController:null,
-      router:null,
+
+      pathDistance:0,
+      countryCount:0,
+
+
+      //Do not use routingResult for acquiring data.
+      //Because Vue doesn't support reactivity for private-field containing classes
+      //Big L for Vue, what a shame
+      //https://github.com/vuejs/core/issues/8245
       routingResult:null,
+
     }
   },
 
@@ -84,11 +93,19 @@ export default {
       );
       let result=router.findRoute();
       this.mapFoundPath=result.getFoundPath();
+      this.routingResult=result;
+      this.pathDistance=result.pathDistance;
+      this.countryCount=result.pathCountryCount;
 
 
 
     }
   },
+  computed:{
+    routingFormResultVisible(){
+      return !!this.routingResult;
+    }
+  }
 }
 </script>
 
