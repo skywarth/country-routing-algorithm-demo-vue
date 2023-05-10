@@ -12,7 +12,7 @@
   </div>
   <div class="flex-auto">
     <label for="country-count" >Is closest ? </label>
-    <TriStateCheckbox v-model="this.isClosest" />
+    <TriStateCheckbox v-model="this.isClosest" disabled/>
 
   </div>
 </template>
