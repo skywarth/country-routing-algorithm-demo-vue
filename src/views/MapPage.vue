@@ -20,7 +20,7 @@
               <span class="font-bold text-lg">Result</span>
             </div>
           </template>
-          <RoutingResultForm :path-distance="pathDistance" :country-count="countryCount"></RoutingResultForm>
+          <RoutingResultForm :path-distance="pathDistance" :country-count="countryCount" :is-closest="isClosest"></RoutingResultForm>
 
 
         </Fieldset>
@@ -65,6 +65,7 @@ export default {
 
       pathDistance:0,
       countryCount:0,
+      isClosest:null,
 
 
       //Do not use routingResult for acquiring data.
@@ -96,7 +97,7 @@ export default {
       this.routingResult=result;
       this.pathDistance=result.pathDistance;
       this.countryCount=result.pathCountryCount;
-
+      this.isClosest=result.isClosest;
 
 
     }
