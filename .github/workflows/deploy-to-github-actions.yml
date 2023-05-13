@@ -1,4 +1,4 @@
-name: Deploy to GH Pages
+name: GitHub Pages
 
 on:
   push:
@@ -6,26 +6,35 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-deploy:
-    runs-on: ubuntu-latest
-
+  deploy:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@master
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
-          persist-credentials: false
+          node-version: '18'
 
-      - name: Install 🔧
-        run: npm ci
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      - name: Build 🏗️
-        run: npm run build
-        env:
-          NODE_ENV: production
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
 
-      - name: Deploy to GH Pages 🚀
-        if: ${{ github.event_name != 'pull_request' }}
+      - name: deploy
         uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist
+          publish_dir: ./dist
