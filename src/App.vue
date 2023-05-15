@@ -3,7 +3,7 @@
 <template>
   <div class="main-wrapper">
     <div class="menu">
-      <router-link to="/">Home</router-link>
+      <router-link to="/">Home1</router-link>
 
     </div>
     <div class="map-wrapper">
