@@ -1,0 +1,48 @@
+
+name: Vue Github Pages Deployer Using Vite
+description: Deploy your Vue app to github pages using vite
+branding:
+  icon: 'zap'  
+  color: 'purple'
+author: 'Skywarth'
+inputs:
+  public_base_path:
+    description: "Public base path string for vite/vue, this affects the routing, history and asset links. Make sure to provide appropriately since Github Pages stores your app in a directory under a subdomain."
+    required: false
+    default: ${{ github.event.repository.name }}
+  build_path:
+    description: "Which folder do you want your Github Page to use as root directory. Usually it is your build output directory such as ./dist "
+    required: false
+    default: ./dist
+  deploy_environment_name:
+    description: "Desired name for the Deployment environment. "
+    required: false
+    default: github-pages
+runs:
+  using: "composite"
+  steps:
+      - name: Dump context
+        uses: crazy-max/ghaction-dump-context@v2
+      - name: Dump build_path
+        run: echo "build_path is ${{ inputs.build_path }}"
+        shell: bash
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Install
+        run: npm ci
+        shell: bash
+      - name: Build
+        run: vite build --base=${{ inputs.public_base_path }}
+        shell: bash
+        env:
+          NODE_ENV: production
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ${{ inputs.build_path }}
+      - name: Deploy
+        env:
+          name: ${{ inputs.deploy_environment_name }}
+          url: ${{ steps.deployment.outputs.page_url }}
+        uses: actions/deploy-pages@v2
+        id: deployment
