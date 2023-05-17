@@ -30,7 +30,7 @@ jobs:
       - name: Install
         run: npm ci
       - name: Build
-        run: vite build --base=${{ inputs.public_base_path }}
+        run: npm run build -- --base=${{ inputs.public_base_path }}
         env:
           NODE_ENV: production
 
