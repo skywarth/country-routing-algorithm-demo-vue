@@ -10,9 +10,9 @@
     <label for="country-count" >Country Count </label>
     <InputNumber v-model="this.countryCount" inputId="country-count" readonly class="w-full mb-3"/>
   </div>
-  <div class="flex-auto">
-    <label for="country-count" >Is closest ? </label>
-    <TriStateCheckbox v-model="this.isClosest" disabled/>
+  <div class="flex align-items-center mb-3">
+    <label for="is-closest-checkbox" class="mr-3"  >Is closest ? </label>
+    <TriStateCheckbox id="is-closest-checkbox" v-model="this.isClosest" disabled/>
 
   </div>
   <div class="flex-auto">
@@ -27,6 +27,7 @@
           :label="traversedCountry.countryCode"
           :distance-to-final-destination="traversedCountry.distanceToFinalDestination"
           :some-attribute="traversedCountry.countryCode"
+          class="mb-2 mr-2"
           @mouseover="displayTraversedCountryDetails($event,traversedCountry)"
           @mouseleave="hideOverlay"
           @click="traversedCountriesOverlayForceOpen=true"
