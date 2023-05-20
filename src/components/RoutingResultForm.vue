@@ -15,12 +15,44 @@
     <TriStateCheckbox v-model="this.isClosest" disabled/>
 
   </div>
+  <div class="flex-auto">
+    <label for="country-count" >Chips </label>
+
+    <div class="flex flex-wrap">
+
+      <!--          v-tooltip.bottom="traversedCountry.countryCode"-->
+      <Chip
+          v-for="traversedCountry in this.traversedCountries"
+          :v-tooltip="traversedCountry.countryCode" placeholder="Right"
+          :label="traversedCountry.countryCode"
+          :distance-to-final-destination="traversedCountry.distanceToFinalDestination"
+          :some-attribute="traversedCountry.countryCode"
+          @mouseover="displayTraversedCountryDetails($event,traversedCountry)"
+          @mouseleave="hideOverlay"
+          @click="traversedCountriesOverlayForceOpen=true"
+
+      />
+
+      <OverlayPanel :showCloseIcon="true"  ref="op" @hide="()=>traversedCountriesOverlayForceOpen=false">
+        <ul>
+          <li>
+            <span>Distance to final destination: {{this.$refs.op.traversedCountry.distanceToFinalDestination}}</span>
+          </li>
+        </ul>
+      </OverlayPanel>
+    </div>
+
+  </div>
 </template>
 
 <script>
 import InputNumber from "primevue/inputnumber";
 import InputText from "primevue/inputtext";
 import TriStateCheckbox from 'primevue/tristatecheckbox';
+import Chip from 'primevue/chip';
+import OverlayPanel from 'primevue/overlaypanel';
+
+
 
 
 export default {
@@ -28,17 +60,32 @@ export default {
   components: {
     InputNumber,
     InputText,
-    TriStateCheckbox
+    TriStateCheckbox,
+    Chip,
+    OverlayPanel
   },
   props: {
     pathDistance:Number,
     countryCount:Number,
-    isClosest:Boolean
+    isClosest:Boolean,
+    traversedCountries:Array
   },
   data(){
     return {
-
+      traversedCountriesOverlayForceOpen:false
     }
+  },
+  methods:{
+    displayTraversedCountryDetails(event,traversedCountry){
+      this.$refs.op.traversedCountry=traversedCountry;
+      this.$refs.op.show(event);
+    },
+
+    hideOverlay(event){
+      if(this.traversedCountriesOverlayForceOpen===false){
+        this.$refs.op.hide();
+      }
+    },
   }
 }
 </script>

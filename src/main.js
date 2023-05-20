@@ -18,6 +18,8 @@ import "primeflex/primeflex.css";
 import "primeicons/primeicons.css";
 
 import Dropdown from 'primevue/dropdown';
+import Tooltip from 'primevue/tooltip';
+import OverlayPanel from 'primevue/overlaypanel';
 
 import CountryFlag from 'vue-country-flag-next';
 
@@ -35,6 +37,8 @@ const router = createRouter({
 });
 
 const app = createApp(App);
+
+app.directive('tooltip', Tooltip);
 
 app.use(PrimeVue);
 app.use(router);
