@@ -30,7 +30,6 @@ jobs:
         uses: actions/checkout@v3
       - name: Vue Github Pages Deployer Using Vite
         uses: skywarth/vite-vue-github-pages-deploy@master
-        with:
-          deploy_environment_name: 'my-cool-deploy-environment'
+
       
       
