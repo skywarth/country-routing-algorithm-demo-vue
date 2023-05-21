@@ -34,8 +34,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Vue Github Pages Deployer Using Vite
-        uses: skywarth/vite-vue-github-pages-deploy@v1.0.0
+      - name: Vite Github Pages Deployer
+        uses: skywarth/vite-github-pages-deployer@v1.0.1
+
 
       
       
