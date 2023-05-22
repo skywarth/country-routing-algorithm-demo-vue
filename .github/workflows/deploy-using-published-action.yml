@@ -38,7 +38,7 @@ jobs:
         uses: skywarth/vite-github-pages-deployer@master
         with:
           debug_mode: 'true'
-          package_manager: 'npm'
+          package_manager: 'yarn'
 
 
 
