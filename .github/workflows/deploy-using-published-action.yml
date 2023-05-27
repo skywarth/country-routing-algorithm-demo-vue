@@ -41,7 +41,7 @@ jobs:
           debug_mode: 'true'
           package_manager: 'npm'
       - name: dump outputs
-        run: ${{steps.deploy_to_pages.outputs.github_pages_url}} 
+        run:  echo "${{steps.deploy_to_pages.outputs.github_pages_url}}"
 
 
 
