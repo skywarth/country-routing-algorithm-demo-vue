@@ -37,9 +37,6 @@ jobs:
       - name: Vite Github Pages Deployer
         uses: skywarth/vite-github-pages-deployer@master
         id: deploy_to_pages
-        with:
-          debug_mode: 'true'
-          package_manager: 'npm'
       - name: dump outputs
         run:  echo "${{steps.deploy_to_pages.outputs.github_pages_url}}"
 
