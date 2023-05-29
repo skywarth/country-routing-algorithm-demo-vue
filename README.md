@@ -1,5 +1,8 @@
 # country-routing-demo-vue
 
+[![Deploy using published action](https://github.com/skywarth/country-routing-algorithm-demo-vue/actions/workflows/deploy-using-published-action.yml/badge.svg)](https://github.com/skywarth/country-routing-algorithm-demo-vue/actions/workflows/deploy-using-published-action.yml)
+
+
 ## Demo
 
 https://skywarth.github.io/country-routing-algorithm-demo-vue/
