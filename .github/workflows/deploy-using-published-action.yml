@@ -35,7 +35,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Vite Github Pages Deployer
-        uses: skywarth/vite-github-pages-deployer@master
+        uses: skywarth/vite-github-pages-deployer@1.1.0
         with:
           debug_mode: 'true'
         id: deploy_to_pages
