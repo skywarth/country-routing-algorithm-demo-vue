@@ -37,7 +37,7 @@ jobs:
       - name: Vite Github Pages Deployer
         uses: skywarth/vite-github-pages-deployer@node_env_param
         with:
-          install_phase_node_env: 'dev'
+          install_phase_node_env: 'production'
           build_phase_node_env: 'dev'
           debug_mode: 'true'
         id: deploy_to_pages
