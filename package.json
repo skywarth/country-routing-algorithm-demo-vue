@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "country-routing-algorithm": "^1.0.1",
+    "country-routing-algorithm": "^2.0.0",
     "primeflex": "^3.3.0",
     "primeicons": "^6.0.1",
     "primevue": "^3.27.0",

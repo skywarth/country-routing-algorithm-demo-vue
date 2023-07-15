@@ -63,7 +63,7 @@ export default {
 
     foundPath(newVal, oldVal) {
       this.setViewToContainAll();
-      console.log(newVal);
+      //console.log(newVal);
       //debugger
 
     }

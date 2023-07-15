@@ -100,7 +100,7 @@ export default {
       this.countryCount=result.pathCountryCount;
       this.isClosest=result.isClosest;
       this.traversedCountries=result.traversedCountries;
-      console.log(result.traversedCountries);
+      //console.log(result.traversedCountries);
 
     }
   },
