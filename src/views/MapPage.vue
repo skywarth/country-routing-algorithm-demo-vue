@@ -94,6 +94,7 @@ export default {
           this.toCountryCode
       );
       let result=router.findRoute();
+      console.log(result);
       this.mapFoundPath=result.getFoundPath();
       this.routingResult=result;
       this.pathDistance=result.pathDistance;

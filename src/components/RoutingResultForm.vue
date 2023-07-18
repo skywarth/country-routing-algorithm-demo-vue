@@ -7,8 +7,12 @@
     </div>
   </div>
   <div class="flex-auto">
-    <label for="country-count" >Country Count </label>
+    <label for="country-count" >Path Country Count </label>
     <InputNumber v-model="this.countryCount" inputId="country-count" readonly class="w-full mb-3"/>
+  </div>
+  <div class="flex-auto">
+    <label for="country-count" >Traversed Country Count </label>
+    <InputNumber v-model="this.traversedCountries.length" inputId="country-count" readonly class="w-full mb-3"/>
   </div>
   <div class="flex align-items-center mb-3">
     <label for="is-closest-checkbox" class="mr-3"  >Is closest ? </label>
@@ -37,7 +41,16 @@
       <OverlayPanel :showCloseIcon="true"  ref="op" @hide="()=>traversedCountriesOverlayForceOpen=false">
         <ul>
           <li>
-            <span>Distance to final destination: {{this.$refs.op.traversedCountry.distanceToFinalDestination}}</span>
+            <span>Distance to destination: {{this.$refs.op.traversedCountry.countryCode}}</span>
+          </li>
+          <li>
+            <span>Distance to destination: {{this.$refs.op.traversedCountry.attributes.name.common}}</span>
+          </li>
+          <li>
+            <span>Distance to destination: {{this.$refs.op.traversedCountry.distanceToFinalDestination.toFixed(2)}}</span>
+          </li>
+          <li>
+            <span>Distance between node: {{this.$refs.op.traversedCountry.distanceBetweenNode.toFixed(2)}}</span>
           </li>
         </ul>
       </OverlayPanel>
