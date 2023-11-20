@@ -40,7 +40,6 @@ jobs:
           #install_phase_node_env: 'production'
           #build_phase_node_env: 'dev'
           debug_mode: 'true'
-          public_base_path: '/override'
         id: deploy_to_pages
       - name: dump outputs
         run:  echo "${{steps.deploy_to_pages.outputs.github_pages_url}}"
