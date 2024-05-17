@@ -35,7 +35,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Vite Github Pages Deployer
-        uses: skywarth/vite-github-pages-deployer@v1.3.0
+        uses: skywarth/vite-github-pages-deployer@dependency-upgrade
         #with:
           #install_phase_node_env: 'production'
           #build_phase_node_env: 'dev'
