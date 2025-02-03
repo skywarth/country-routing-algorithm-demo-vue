@@ -35,7 +35,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Vite Github Pages Deployer
-        uses: sondalex/vite-github-pages-deployer@master
+        uses: sondalex/vite-github-pages-deployer@add_working_directory
         #with:
           #install_phase_node_env: 'production'
           #build_phase_node_env: 'dev'
