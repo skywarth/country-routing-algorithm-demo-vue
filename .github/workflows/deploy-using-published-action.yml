@@ -34,8 +34,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup node env
+        uses: actions/setup-node
+        with:
+          node-version: 18
       - name: Vite Github Pages Deployer
-        uses: skywarth/vite-github-pages-deployer@dependabot/github_actions/actions/upload-pages-artifact-4
+        uses: skywarth/vite-github-pages-deployer@master
         #with:
           #install_phase_node_env: 'production'
           #build_phase_node_env: 'dev'
