@@ -35,7 +35,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Vite Github Pages Deployer
-        uses: skywarth/vite-github-pages-deployer@separate-dependency-to-working-dir
+        uses: skywarth/vite-github-pages-deployer@dependabot/github_actions/actions/upload-pages-artifact-4
         #with:
           #install_phase_node_env: 'production'
           #build_phase_node_env: 'dev'
